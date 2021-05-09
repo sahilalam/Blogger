@@ -296,7 +296,7 @@ app.get('/get/videos/:offset/:category/:from/:to/:myvideos',async(req,res)=>{
         let category=req.params.category;
         if(category!=0)
         {
-            filter.category=category;
+            filter.category=category.split(" ");
         }
         let from=req.params.from;
         if(from!=0)
