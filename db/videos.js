@@ -39,7 +39,7 @@ let getVideos=async(offset,filter)=>{
             if(filter.category)
             {
                 f.push({
-                    'category':{$eq:filter.category}
+                    'category':{$in:filter.category}
                 });
             }
             if(filter.date)
