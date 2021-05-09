@@ -265,6 +265,7 @@ app.post('/add/video',async(req,res)=>{
         let email=decoded.email;
         let title=req.body.title;
         let category=req.body.category;
+        category=category.split(' ');
         let description=req.body.description;
         let date=req.body.date;
         let video_url=req.body.video_url;
