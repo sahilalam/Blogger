@@ -288,7 +288,7 @@ app.get('/get/videos/:offset/:category/:from/:to/:myvideos',async(req,res)=>{
         let decoded=await jwt.verify(access_token,process.env.KEY);
         let offset=+req.params.offset;
         let filter={};
-        let myvideos=+req.params.myvideo;
+        let myvideos=+req.params.myvideos;
         if(myvideos)
         {
             const user=await checkEmail(decoded.email);
