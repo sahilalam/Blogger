@@ -55,6 +55,9 @@ let getVideos=async(offset,filter)=>{
             }
             if(filter.myvideos)
             {
+                filter.myvideos=filter.myvideos.map((id)=>{
+                    return new objectId(id);
+                })
                 f.push({
                     "_id":{
                         $in:filter.myvideos
