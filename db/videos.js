@@ -87,7 +87,7 @@ let getVideos=async(offset,filter)=>{
     }
 }
 
-let getVideoById=async(id)=>{
+let getVideoById=async(id,increase_views)=>{
     try{
         const client=await mongoClient.connect(db_url);
         const db=await client.db(db_name);
@@ -95,9 +95,13 @@ let getVideoById=async(id)=>{
         const data=await db.collection(videos_collection).findOne({'_id':{
             $eq:id
         }});
-        const view=await db.collection(videos_collection).updateOne({'_id':{
-            $eq:id
-        }},{$inc:{"views":1}});
+        if(increase_views)
+        {
+            const view=await db.collection(videos_collection).updateOne({'_id':{
+                $eq:id
+            }},{$inc:{"views":1}});
+        }
+       
         client.close();
         return data;
     }

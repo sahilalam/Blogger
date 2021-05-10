@@ -324,7 +324,7 @@ app.get('/get/fullvideo/:video_id',async(req,res)=>{
     try{
         const access_token=req.headers.authorization;
         const decoded=await jwt.verify(access_token,process.env.KEY);
-        const data=await getVideoById(req.params.video_id);
+        const data=await getVideoById(req.params.video_id,1);
         res.status(200).json(data);
     }
     catch(err){
@@ -409,7 +409,7 @@ app.get('/comment/:video_id',async(req,res)=>{
         const access_token=req.headers.authorization;
         const decoded=await jwt.verify(access_token,process.env.KEY);
         const email=decoded.email;
-        const video=await getVideoById(req.params.video_id);
+        const video=await getVideoById(req.params.video_id,0);
         let comments=video.comments;
         const data=await getCommentByIds(comments);
         res.status(200).json(data)
